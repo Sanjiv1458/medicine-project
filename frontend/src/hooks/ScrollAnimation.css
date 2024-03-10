@@ -1,0 +1,30 @@
+@keyframes scrollAnimation {
+  0% {
+    background-color: initial;
+    /* Initial background color */
+  }
+
+  50% {
+    background-color: darkbrown;
+    /* Color midway through the animation */
+  }
+
+  100% {
+    background-color: initial;
+    /* Final background color */
+  }
+}
+
+.animation {
+  border-radius: 8px;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+  animation: scrollAnimation 1s infinite;
+  /* Adjust the duration as needed */
+  transition: box-shadow 0.1s ease-in-out;
+  /* Added box-shadow transition */
+}
+
+.animation:hover {
+  box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.4);
+  /* Adjusted box-shadow on hover */
+}

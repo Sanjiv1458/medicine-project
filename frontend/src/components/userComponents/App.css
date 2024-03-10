@@ -1,0 +1,82 @@
+/* Sticky Navbar */
+nav.sticky-nav {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1000;
+  background-color: #ffffff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Container for Navbar */
+nav .container {
+  max-width: 100%;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* Navbar Styles */
+nav {
+  border-bottom: 1px solid #e2e8f0;
+}
+
+/* Nav Links */
+nav a {
+  color: #1a202c;
+  padding: 8px 16px;
+  text-decoration: none;
+}
+
+nav a:hover {
+  background-color: #edf2f7;
+}
+
+/* Mobile View Card */
+.bg-gray-50 {
+  background-color: #f7fafc;
+}
+
+/* Sticky Header */
+header.sticky-header {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1000;
+  background-color: #ffffff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Header.css */
+.notification-container {
+  overflow: hidden;
+  width: 300px;
+}
+
+.scrolling-notification {
+  display: flex;
+  animation: scroll 20s linear infinite;
+}
+
+.scrolling-notification span {
+  margin-right: 20px;
+  flex-shrink: 0;
+}
+
+@keyframes scroll {
+  0% {
+    transform: translateX(100%);
+  }
+
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+/* Add to your CSS file */
+.sticky-sidebar {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  background-color: #ffffff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
