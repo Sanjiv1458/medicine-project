@@ -5,6 +5,7 @@ import ProductApi from '../../api/productApi';
 
 const CreateProductForm = () => {
   const [newProduct, setNewProduct] = useState({
+    id: Number,
     name: '',
     description: '',
     price: Number,
@@ -108,6 +109,7 @@ const CreateProductForm = () => {
     try {
       await ProductApi.createProduct(newProduct);
       setNewProduct({
+        id: null,
         name: '',
         description: '',
         price: null,
@@ -135,6 +137,17 @@ const CreateProductForm = () => {
       onDragOver={handleDragOver}>
       <div className="bg-white dark:bg-gray-800 shadow-md rounded-lg p-6">
         <div className="flex flex-wrap -mx-4">
+          <div className="w-full md:w-1/2 px-4 mb-4">
+            <input
+              type="number"
+              name="id"
+              value={newProduct.id === null ? '' : newProduct.id}
+              onChange={handleChange}
+              placeholder="ID"
+              className="w-full p-4 text-gray-900 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            />
+          </div>
+
           <div className="w-full md:w-1/2 px-4 mb-4">
             <input
               type="text"

@@ -1,5 +1,5 @@
 // routesConfig.js
-import { Home, UserHome, SubmitMessage, SubmitQuery, Login, Register, Unauthorized, Profile, AdminDashboard, CreateProductForm, UpdateProduct, ProductList, NoProducts, AdminInbox, ProductQuery, Product, Contact, Company } from './index';
+import { Home, UserHome, SubmitMessage, SubmitQuery, Login, Register, Unauthorized, Profile, AdminDashboard, CreateProductForm, UpdateProduct, ProductList, NoProducts, AdminInbox, ProductQuery, Product, Contact, Company, ProductDetails } from './index';
 
 export const publicRoutes = [
   { path: '/', element: <Home /> },
@@ -27,4 +27,5 @@ export const userRoutes = [
   { path: 'contact', element: <Contact /> },
   { path: 'message/:messageId', element: <SubmitMessage /> },
   { path: 'query/:queryId', element: <SubmitQuery /> },
+  { path: 'product/:productId', element: <ProductDetails /> },
 ];

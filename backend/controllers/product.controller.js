@@ -44,10 +44,11 @@ class productController {
       throw new ApiError(403, 'Permission denied. Admin access required.');
     }
     try {
-      const { name, description, price, category, type, tags, manufacturer, inventory } = req.body;
+      const { id, name, description, price, category, type, tags, manufacturer, inventory } = req.body;
       const productImg = await handleImageUpload(req.file);
 
       const product = await Product.create({
+        id: id,
         name: name,
         description: description,
         price: price,
@@ -94,7 +95,7 @@ class productController {
     }
     try {
       const { productId } = req.params;
-      const { name, description, price, category, type, tags, manufacturer, inventory } = req.body;
+      const { id, name, description, price, category, type, tags, manufacturer, inventory } = req.body;
 
       const product = await getProductByIdOrFail(res, productId);
 
@@ -110,7 +111,7 @@ class productController {
 
       const updatedProduct = await Product.findByIdAndUpdate(
         productId,
-        { $set: { name, description, price, category, type, tags, manufacturer, inventory, productImg } },
+        { $set: { id, name, description, price, category, type, tags, manufacturer, inventory, productImg } },
         { new: true }
       );
 

@@ -4,6 +4,7 @@ import UserApi from '../../api/userApi';
 import { toast } from 'react-hot-toast';
 import useAuth from '../../hooks/useAuth';
 import ToastUtility from '../../utils/ToastUtility';
+import { Link } from 'react-router-dom';
 
 const ProductList = ({ selectedCategory, selectedType }) => {
   const [showEnquiryModal, setShowEnquiryModal] = useState(false);
@@ -106,13 +107,16 @@ const ProductList = ({ selectedCategory, selectedType }) => {
             <div
               key={product._id}
               className="bg-white dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-lg shadow-lg overflow-hidden">
-              <a href="#product-details">
+              {/* Wrap the product card with Link */}
+              <Link
+                to={`/user/product/${product._id}`}
+                key={product._id}>
                 <img
                   src={product.productImg}
                   alt={product.name}
                   className="rounded-t-lg w-full"
                 />
-              </a>
+              </Link>
               <div className="p-4">
                 <a href="#product-details">
                   <h5 className="mb-2 text-xl font-bold text-gray-800 dark:text-white">{product.name}</h5>
