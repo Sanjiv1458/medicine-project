@@ -18,7 +18,7 @@ const ProductList = ({ selectedCategory, selectedType }) => {
   });
   const [products, setProducts] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
-  const productsPerPage = 4;
+  const productsPerPage = 20;
   const { state } = useAuth();
   const userId = state.user._id;
 
