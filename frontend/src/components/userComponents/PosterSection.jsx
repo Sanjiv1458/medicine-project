@@ -9,7 +9,7 @@ function PosterSection() {
           <h2 className="text-3xl font-bold mb-4 text-gray-800 dark:text-white">Pharmaceutical Poster</h2>
           {/* Add your pharmaceutical poster image or content here */}
           <img
-            src="https://via.placeholder.com/800x400"
+            src="https://i.pinimg.com/originals/a2/21/4d/a2214d4a6220c645e559d052f461f636.jpg"
             alt="Pharmaceutical Poster"
             className="w-full rounded-md shadow-md"
           />

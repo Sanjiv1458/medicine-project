@@ -78,7 +78,7 @@ const Navbar = () => {
           <div className="flex items-center space-x-6 rtl:space-x-reverse">
             <Link
               to="/user/cart"
-              className="relative text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-gray-500">
+              className="block px-3 py-2 rounded-md text-gray-900 dark:text-white hover:bg-gray-200 hover:text-gray-900 dark:hover:bg-gray-800 dark:hover:text-gray-300">
               <FontAwesomeIcon
                 icon={faShoppingCart}
                 size="lg"

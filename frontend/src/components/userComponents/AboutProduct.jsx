@@ -9,7 +9,7 @@ function AboutProduct() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div className="mb-4">
               <img
-                src="https://via.placeholder.com/400x300"
+                src="https://etimg.etb2bimg.com/photo/100619299.cms"
                 alt="Product Image"
                 className="w-full h-auto rounded-lg transition transform hover:scale-105 duration-300 ease-in-out"
               />

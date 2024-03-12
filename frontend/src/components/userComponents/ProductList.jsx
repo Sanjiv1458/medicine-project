@@ -143,9 +143,9 @@ const ProductList = ({ selectedCategory, selectedType }) => {
                   Stock: {product.inventory.quantity} {product.inventory.inStock ? 'In Stock' : 'Out of Stock'}
                 </p>
                 <button
-                  className="inline-flex items-center px-4 py-2 text-sm font-medium text-white bg-blue-500 dark:bg-blue-700 rounded-lg hover:bg-blue-600 focus:ring-4 focus:outline-none focus:ring-blue-300"
+                  className="inline-flex items-center px-4 py-2 text-sm font-medium text-white bg-blue-500 dark:bg-blue-700 rounded-lg hover:bg-blue-600 dark:hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-400 mr-2"
                   onClick={() => handleEnquiryClick(product.name, product.id)}>
-                  Get Enquiry
+                  Enquiry
                   <svg
                     className="w-4 h-4 ml-2"
                     aria-hidden="true"
@@ -158,6 +158,25 @@ const ProductList = ({ selectedCategory, selectedType }) => {
                       strokeLinejoin="round"
                       strokeWidth="2"
                       d="M1 5h12m0 0L9 1m4 4L9 9"
+                    />
+                  </svg>
+                </button>
+                <button
+                  className="inline-flex items-center px-4 py-2 text-sm font-medium text-white bg-green-500 dark:bg-green-700 rounded-lg hover:bg-green-600 dark:hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 dark:focus:ring-green-400"
+                  onClick={() => handleAddToCart(product)}>
+                  Cart
+                  <svg
+                    className="w-4 h-4 ml-2"
+                    aria-hidden="true"
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor">
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M12 6v6m0 0v6m0-6h6m-6 0H6"
                     />
                   </svg>
                 </button>
