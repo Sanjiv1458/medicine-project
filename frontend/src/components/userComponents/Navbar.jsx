@@ -1,9 +1,10 @@
 import { useState, useEffect } from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faBars, faTimes } from '@fortawesome/free-solid-svg-icons';
+import { faBars, faTimes, faShoppingCart } from '@fortawesome/free-solid-svg-icons';
 import DarkModeSwitcher from '../../utils/DarkModeSwitcher';
 import useLogout from '../../hooks/useLogout';
+import useCart from '../../hooks/useCart';
 import useAuth from '../../hooks/useAuth';
 import UserImageAccordion from './UserImageAccordion';
 import './App.css';
@@ -13,8 +14,11 @@ const Navbar = () => {
   const [showStickyNav, setShowStickyNav] = useState(false);
   const [isNavOpen, setIsNavOpen] = useState(false);
   const { logout, isLoading } = useLogout();
-  const { state } = useAuth();
-  const isAuthenticated = state.isAuthenticated;
+  const { state: authState } = useAuth();
+  const isAuthenticated = authState.isAuthenticated;
+
+  const { state: cartState } = useCart();
+  const cartItemCount = cartState.items.length;
 
   const handleNavLinkClick = (href) => {
     setActiveLink(href);
@@ -72,10 +76,19 @@ const Navbar = () => {
             ))}
           </div>
           <div className="flex items-center space-x-6 rtl:space-x-reverse">
+            <Link
+              to="/user/cart"
+              className="relative text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-gray-500">
+              <FontAwesomeIcon
+                icon={faShoppingCart}
+                size="lg"
+              />
+              {cartItemCount > 0 && <span className="absolute top-0 right-0 bg-red-500 text-white rounded-full px-2 py-1">{cartItemCount}</span>}
+            </Link>
             <DarkModeSwitcher />
             {isAuthenticated ? (
               <>
-                <UserImageAccordion user={state.user} /> {/* Wrap both components in a fragment */}
+                <UserImageAccordion user={authState.user} /> {/* Wrap both components in a fragment */}
               </>
             ) : (
               <Link

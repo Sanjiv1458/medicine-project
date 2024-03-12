@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import faqData from './product/faqData';
+import faqData from './faqData/faqData';
 
 const FAQSection = () => {
   const [activeTab, setActiveTab] = useState('stats');

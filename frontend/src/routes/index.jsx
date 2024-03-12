@@ -25,5 +25,6 @@ const Contact = lazy(() => import('../components/userComponents/QuerySection'));
 const SubmitMessage = lazy(() => import('../components/userComponents/SubmitMessage'));
 const SubmitQuery = lazy(() => import('../components/userComponents/SubmitQuery'));
 const ProductDetails = lazy(() => import('../components/userComponents/ProductDetails'));
+const Cart = lazy(() => import('../components/userComponents/Cart'));
 
-export { Home, UserHome, SubmitMessage, SubmitQuery, Product, ProductDetails, Company, Contact, Login, Register, Unauthorized, Profile, AdminDashboard, CreateProductForm, UpdateProduct, ProductList, NoProducts, AdminInbox, ProductQuery };
+export { Home, UserHome, SubmitMessage, SubmitQuery, Product, ProductDetails, Cart, Company, Contact, Login, Register, Unauthorized, Profile, AdminDashboard, CreateProductForm, UpdateProduct, ProductList, NoProducts, AdminInbox, ProductQuery };

@@ -1,11 +1,14 @@
 import { useParams } from 'react-router-dom';
 import { useState, useEffect } from 'react';
+import useCart from '../../hooks/useCart';
 import ProductApi from '../../api/productApi';
 
 const ProductDetails = () => {
   const [product, setProduct] = useState(null);
   const [quantity, setQuantity] = useState(1);
   const { productId } = useParams();
+
+  const { addToCart } = useCart();
 
   useEffect(() => {
     const fetchProduct = async () => {
@@ -28,7 +31,15 @@ const ProductDetails = () => {
   };
 
   const handleAddToCart = () => {
-    console.log(`Added to Cart: ${product.name} (${product._id}) - Quantity: ${quantity}`);
+    if (product.inventory.inStock) {
+      addToCart({
+        id: product.id,
+        name: product.name,
+        quantity,
+        price: product.price,
+        productImg: product.productImg,
+      });
+    }
   };
 
   if (!product) {
@@ -95,7 +106,7 @@ const ProductDetails = () => {
                 } dark:bg-gray-700 ${product.inventory.inStock ? `dark:hover:bg-primary-dark` : ''}`}
                 onClick={() => {
                   if (product.inventory.inStock) {
-                    handleAddToCart(product.name, product._id, quantity);
+                    handleAddToCart();
                   }
                 }}
                 disabled={!product.inventory.inStock}>
@@ -122,9 +133,7 @@ const ProductDetails = () => {
 
           {/* Additional Details */}
           <div className="text-sm leading-loose text-gray-700 dark:text-gray-400">
-            <p>
-             Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo dolorem magni quod mollitia repudiandae ducimus, vitae similique eos. Atque eos harum totam inventore quia et aliquid corporis nesciunt iure velit.
-            </p>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo dolorem magni quod mollitia repudiandae ducimus, vitae similique eos. Atque eos harum totam inventore quia et aliquid corporis nesciunt iure velit.</p>
 
             {/* Additional Fields */}
             <p className="mt-4">
