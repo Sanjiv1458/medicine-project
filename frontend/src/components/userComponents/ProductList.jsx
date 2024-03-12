@@ -5,6 +5,7 @@ import { toast } from 'react-hot-toast';
 import useAuth from '../../hooks/useAuth';
 import ToastUtility from '../../utils/ToastUtility';
 import { Link } from 'react-router-dom';
+import useCart from '../../hooks/useCart';
 
 const ProductList = ({ selectedCategory, selectedType }) => {
   const [showEnquiryModal, setShowEnquiryModal] = useState(false);
@@ -21,6 +22,8 @@ const ProductList = ({ selectedCategory, selectedType }) => {
   const productsPerPage = 20;
   const { state } = useAuth();
   const userId = state.user._id;
+
+  const { addToCart } = useCart();
 
   useEffect(() => {
     const fetchProducts = async () => {
@@ -89,6 +92,18 @@ const ProductList = ({ selectedCategory, selectedType }) => {
     }
 
     setShowEnquiryModal(false);
+  };
+
+  const handleAddToCart = (product) => {
+    addToCart({
+      productId: product._id,
+      name: product.name,
+      quantity: 1,
+      price: product.price,
+      productImg: product.productImg,
+    });
+
+    toast.success(`${product.name} added to the cart.`);
   };
 
   // Filter products based on selectedCategory and selectedType

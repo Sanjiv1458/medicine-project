@@ -13,9 +13,13 @@ const cartReducer = (state, action) => {
   switch (action.type) {
     case ADD_TO_CART: {
       const existingItemIndex = state.items.findIndex((item) => item.productId === action.payload.productId);
+
       if (existingItemIndex !== -1) {
-        const updatedItems = [...state.items];
-        return { ...state, items: updatedItems };
+        // If the product already exists in the cart, update the quantity
+        return {
+          ...state,
+          items: state.items.map((item, index) => (index === existingItemIndex ? { ...item, quantity: item.quantity + action.payload.quantity } : item)),
+        };
       } else {
         // If the product doesn't exist in the cart, add it
         return { ...state, items: [...state.items, action.payload] };

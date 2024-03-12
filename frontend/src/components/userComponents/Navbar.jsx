@@ -75,15 +75,15 @@ const Navbar = () => {
               </NavLink>
             ))}
           </div>
-          <div className="flex items-center space-x-6 rtl:space-x-reverse">
+          <div className="flex items-center space-x-6 rtl:space-x-reverse relative">
             <Link
               to="/user/cart"
-              className="block px-3 py-2 rounded-md text-gray-900 dark:text-white hover:bg-gray-200 hover:text-gray-900 dark:hover:bg-gray-800 dark:hover:text-gray-300">
+              className="block relative px-3 py-2 rounded-md text-gray-900 dark:text-white hover:bg-gray-200 hover:text-gray-900 dark:hover:bg-gray-800 dark:hover:text-gray-300">
               <FontAwesomeIcon
                 icon={faShoppingCart}
                 size="lg"
               />
-              {cartItemCount > 0 && <span className="absolute top-0 right-0 bg-red-500 text-white rounded-full px-2 py-1">{cartItemCount}</span>}
+              {cartItemCount > 0 && <span className="absolute top-0 right-0 bg-red-500 text-white rounded-full px-2 py-1 -mt-1 -mr-1">{cartItemCount}</span>}
             </Link>
             <DarkModeSwitcher />
             {isAuthenticated ? (
