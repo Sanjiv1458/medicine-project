@@ -1,23 +1,32 @@
 // CartContext.js
 import { createContext, useReducer, useEffect } from 'react';
-// import cartApi from '../api/cartApi';
 
 const CartContext = createContext();
 
 const ADD_TO_CART = 'ADD_TO_CART';
 const REMOVE_FROM_CART = 'REMOVE_FROM_CART';
 const CLEAR_CART = 'CLEAR_CART';
+const INCREASE_QUANTITY = 'INCREASE_QUANTITY';
+const DECREASE_QUANTITY = 'DECREASE_QUANTITY';
 
 const cartReducer = (state, action) => {
   switch (action.type) {
     case ADD_TO_CART:
       return { ...state, items: [...state.items, action.payload] };
     case REMOVE_FROM_CART: {
-      const updatedItems = state.items.filter((item) => item.id !== action.payload.id);
+      const updatedItems = state.items.filter((item) => item.productId !== action.payload.productId);
       return { ...state, items: updatedItems };
     }
     case CLEAR_CART:
       return { ...state, items: [] };
+    case INCREASE_QUANTITY: {
+      const updatedItems = state.items.map((item) => (item.productId === action.payload.productId ? { ...item, quantity: item.quantity + 1 } : item));
+      return { ...state, items: updatedItems };
+    }
+    case DECREASE_QUANTITY: {
+      const updatedItems = state.items.map((item) => (item.productId === action.payload.productId && item.quantity > 1 ? { ...item, quantity: item.quantity - 1 } : item));
+      return { ...state, items: updatedItems };
+    }
     default:
       return state;
   }
@@ -54,7 +63,15 @@ const CartProvider = ({ children }) => {
     dispatch({ type: CLEAR_CART });
   };
 
-  return <CartContext.Provider value={{ state, addToCart, removeFromCart, clearCart }}>{children}</CartContext.Provider>;
+  const increaseQuantity = (productId) => {
+    dispatch({ type: INCREASE_QUANTITY, payload: { productId } });
+  };
+
+  const decreaseQuantity = (productId) => {
+    dispatch({ type: DECREASE_QUANTITY, payload: { productId } });
+  };
+
+  return <CartContext.Provider value={{ state, addToCart, removeFromCart, clearCart, increaseQuantity, decreaseQuantity }}>{children}</CartContext.Provider>;
 };
 
 export { CartProvider, CartContext };

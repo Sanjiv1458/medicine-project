@@ -33,12 +33,13 @@ const ProductDetails = () => {
   const handleAddToCart = () => {
     if (product.inventory.inStock) {
       addToCart({
-        id: product.id,
+        productId: product._id,
         name: product.name,
         quantity,
         price: product.price,
         productImg: product.productImg,
       });
+      setQuantity(1); // Reset quantity after adding to cart
     }
   };
 

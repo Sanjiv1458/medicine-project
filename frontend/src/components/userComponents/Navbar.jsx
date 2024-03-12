@@ -69,7 +69,7 @@ const Navbar = () => {
               <NavLink
                 key={item.href}
                 to={`/${item.href}`}
-                activeclassname="bg-teal-500 dark:bg-teal-500 hover:bg-teal-500"
+                activeClassName="bg-teal-500 dark:bg-teal-500 hover:bg-teal-500"
                 className={`block px-3 py-2 rounded-md text-gray-900 dark:text-white hover:bg-gray-200 hover:text-gray-900 dark:hover:bg-gray-800 dark:hover:text-gray-300`}>
                 {item.text}
               </NavLink>
@@ -78,7 +78,7 @@ const Navbar = () => {
           <div className="flex items-center space-x-6 rtl:space-x-reverse">
             <Link
               to="/user/cart"
-              className="block px-3 py-2 rounded-md text-gray-900 dark:text-white hover:bg-gray-200 hover:text-gray-900 dark:hover:bg-gray-800 dark:hover:text-gray-300">
+              className="relative block px-3 py-2 rounded-md text-gray-900 dark:text-white hover:bg-gray-200 hover:text-gray-900 dark:hover:bg-gray-800 dark:hover:text-gray-300">
               <FontAwesomeIcon
                 icon={faShoppingCart}
                 size="lg"
@@ -88,25 +88,27 @@ const Navbar = () => {
             <DarkModeSwitcher />
             {isAuthenticated ? (
               <>
-                <UserImageAccordion user={authState.user} /> {/* Wrap both components in a fragment */}
+                <UserImageAccordion user={authState.user} />
+                <button
+                  onClick={logout}
+                  className="text-sm text-blue-600 dark:text-blue-500 hover:underline hover:bg-white hover:text-blue-900 dark:hover:text-blue-300 dark:hover:bg-gray-900">
+                  Logout
+                </button>
               </>
             ) : (
               <Link
                 to="/login"
-                className="text-sm text-blue-600 dark:text-blue-500 hover:underline 
-                hover:bg-white hover:text-blue-900 dark:hover:text-blue-300 dark:hover:bg-gray-900">
+                className="text-sm text-blue-600 dark:text-blue-500 hover:underline hover:bg-white hover:text-blue-900 dark:hover:text-blue-300 dark:hover:bg-gray-900">
                 Login
               </Link>
             )}
           </div>
-          {/* Toggle icon for mobile view */}
           <button
             onClick={handleToggleNav}
             className={`md:hidden p-2 focus:outline-none ${isNavOpen ? 'text-black dark:text-white' : 'text-gray-700 dark:text-gray-300'}`}>
             {isNavOpen ? <FontAwesomeIcon icon={faTimes} /> : <FontAwesomeIcon icon={faBars} />}
           </button>
         </div>
-        {/* Mobile navigation view */}
         <div className={`md:hidden bg-gray-50 dark:bg-gray-900 p-4 ${isNavOpen ? '' : 'hidden'}`}>
           <div className="max-w-screen-sm mx-auto">
             <ul className="flex flex-col font-medium mt-0 space-y-4 text-sm">
@@ -115,20 +117,18 @@ const Navbar = () => {
                   <NavLink
                     to={`/${item.href}`}
                     onClick={() => handleNavLinkClick(item.href)}
-                    activeclassname="bg-teal-500 dark:bg-teal-500 hover:bg-teal-500"
+                    activeClassName="bg-teal-500 dark:bg-teal-500 hover:bg-teal-500"
                     className={`block px-3 py-2 rounded-md text-gray-900 dark:text-white hover:bg-gray-200 hover:text-gray-900 dark:hover:bg-gray-800 dark:hover:text-gray-300`}>
                     {item.text}
                   </NavLink>
                 </li>
               ))}
-              {/* Additional Logout Option in Mobile View */}
               {isAuthenticated && (
                 <li>
                   <button
                     onClick={logout}
                     className="block px-3 py-2 rounded-md text-red-600 dark:text-red-500 hover:bg-gray-200 hover:text-red-900 dark:hover:text-red-300"
-                    disabled={isLoading} // Disable the button while logout is in progress
-                  >
+                    disabled={isLoading}>
                     {isLoading ? 'Logging Out...' : 'Logout'}
                   </button>
                 </li>
