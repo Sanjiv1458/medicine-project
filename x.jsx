@@ -17,8 +17,7 @@ const ProductList = ({ selectedCategory, selectedType }) => {
     quantity: null,
   });
   const [products, setProducts] = useState([]);
-  const [currentPage, setCurrentPage] = useState(1);
-  const productsPerPage = 4;
+
   const { state } = useAuth();
   const userId = state.user._id;
 
@@ -49,12 +48,6 @@ const ProductList = ({ selectedCategory, selectedType }) => {
 
   const handleCloseModal = () => {
     setShowEnquiryModal(false);
-    setFormData({
-      name: '',
-      email: '',
-      phoneNumber: '',
-      quantity: null,
-    });
   };
 
   const handleFormChange = (e) => {
@@ -104,19 +97,13 @@ const ProductList = ({ selectedCategory, selectedType }) => {
     }
   });
 
-  const indexOfLastProduct = currentPage * productsPerPage;
-  const indexOfFirstProduct = indexOfLastProduct - productsPerPage;
-  const currentProducts = filteredProducts.slice(indexOfFirstProduct, indexOfLastProduct);
-
-  const paginate = (pageNumber) => setCurrentPage(pageNumber);
-
   return (
     <div className="bg-gray-100 dark:bg-gray-800">
       <div className="mx-auto max-w-2xl px-4 py-16 sm:px-6 sm:py-24 lg:max-w-7xl lg:px-8">
         <h2 className="text-3xl font-bold text-gray-800 dark:text-white mb-8">Customers also purchased</h2>
 
         <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-          {currentProducts.map((product) => (
+          {filteredProducts.map((product) => (
             <div
               key={product._id}
               className="bg-white dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-lg shadow-lg overflow-hidden">
@@ -253,50 +240,6 @@ const ProductList = ({ selectedCategory, selectedType }) => {
           </div>
         </div>
       )}
-      <div className="flex justify-between items-center mt-6">
-        <button
-          onClick={() => paginate(currentPage - 1)}
-          disabled={currentPage === 1}
-          className={`whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 ${
-            currentPage === 1 ? 'disabled:pointer-events-none disabled:opacity-50' : ''
-          } dark:text-white dark:hover:bg-gray-700 dark:hover:text-white h-10 px-4 py-2 flex items-center`}>
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="24"
-            height="24"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="2"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            className="w-5 h-5 mr-2">
-            <path d="m15 18-6-6 6-6"></path>
-          </svg>
-          Prev
-        </button>
-        <button
-          onClick={() => paginate(currentPage + 1)}
-          disabled={indexOfLastProduct >= products.length}
-          className={`whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 ${
-            indexOfLastProduct >= products.length ? 'disabled:pointer-events-none disabled:opacity-50' : ''
-          } dark:text-white dark:hover:bg-gray-700 dark:hover:text-white h-10 px-4 py-2 flex items-center`}>
-          Next
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="24"
-            height="24"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="2"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            className="w-5 h-5 ml-2">
-            <path d="m9 18 6-6-6-6"></path>
-          </svg>
-        </button>
-      </div>
     </div>
   );
 };

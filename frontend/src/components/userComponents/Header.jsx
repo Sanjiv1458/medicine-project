@@ -1,5 +1,5 @@
 // Header.jsx
-import React, { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import './App.css'; // Import the CSS file for styling
 
 const Header = () => {

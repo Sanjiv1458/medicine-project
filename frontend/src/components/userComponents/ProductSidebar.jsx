@@ -26,7 +26,7 @@ const ProductSidebar = () => {
   };
 
   // Use your custom arrays for categories and types
-  const categoryOptions = ['ANTI CANCER', 'ANTI HIV', 'PAIN RELIEF', 'SKIN CARE', 'VITAMINS', 'HEART HEALTH', 'DIGESTIVE', "WOMEN'S HEALTH", 'COLD & FLU', 'DIABETES', 'ALLERGY', 'BONE HEALTH', 'EYE CARE', 'SLEEP AID'];
+  const categoryOptions = ['All', 'ANTI CANCER', 'ANTI HIV', 'PAIN RELIEF', 'SKIN CARE', 'VITAMINS', 'HEART HEALTH', 'DIGESTIVE', "WOMEN'S HEALTH", 'COLD & FLU', 'DIABETES', 'ALLERGY', 'BONE HEALTH', 'EYE CARE', 'SLEEP AID'];
   const typeOptions = ['TABLET', 'INJECTION', 'CAPSULE', 'CREAM', 'SYRUP', 'INSULIN', 'DROPS'];
 
   return (
