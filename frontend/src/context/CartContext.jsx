@@ -11,8 +11,17 @@ const DECREASE_QUANTITY = 'DECREASE_QUANTITY';
 
 const cartReducer = (state, action) => {
   switch (action.type) {
-    case ADD_TO_CART:
-      return { ...state, items: [...state.items, action.payload] };
+    case ADD_TO_CART: {
+      const existingItemIndex = state.items.findIndex((item) => item.productId === action.payload.productId);
+      if (existingItemIndex !== -1) {
+        const updatedItems = [...state.items];
+        return { ...state, items: updatedItems };
+      } else {
+        // If the product doesn't exist in the cart, add it
+        return { ...state, items: [...state.items, action.payload] };
+      }
+    }
+
     case REMOVE_FROM_CART: {
       const updatedItems = state.items.filter((item) => item.productId !== action.payload.productId);
       return { ...state, items: updatedItems };
