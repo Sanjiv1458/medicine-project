@@ -1,7 +1,6 @@
 import mongoose from 'mongoose';
 
 const productEnquirySchema = new mongoose.Schema({
-  id:Number,
   product: String,
   name: { type: String, required: true },
   email: { type: String, required: true },

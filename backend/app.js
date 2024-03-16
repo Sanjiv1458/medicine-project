@@ -9,6 +9,7 @@ import authRoutes from './routes/authRoutes.js';
 import adminRoutes from './routes/adminRoutes.js';
 import usersRoutes from './routes/usersRoutes.js';
 import productRoutes from './routes/productRoutes.js'
+// import paymentRoutes from './routes/paymentRoutes.js'
 
 dotenv.config();
 
@@ -39,6 +40,7 @@ app.use('/api/v1/auth', authRoutes);
 app.use('/api/v1/admin', adminRoutes);
 app.use('/api/v1/users', usersRoutes);
 app.use('/api/v1/products', productRoutes);
+// app.use('/api/v1/payment', paymentRoutes);
 
 // Database Connection
 db.on('open', () => {
