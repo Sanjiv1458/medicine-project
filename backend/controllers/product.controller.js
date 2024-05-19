@@ -1,5 +1,5 @@
 import Product from '../models/product.model.js';
-import { uploadOnCloudinary, deleteFromCloudinary } from '../utils/cloudinary.js';
+import { uploadOnCloudinary, deleteFromCloudinary } from '../config/cloudinary.js';
 import { asyncHandler } from '../utils/asyncHandler.js';
 import { ApiError } from '../utils/ApiError.js';
 import { ApiResponse } from '../utils/ApiResponse.js';
